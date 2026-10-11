@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Level 1 - Latihan Pernapasan</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(to bottom,#87CEEB,#E0F7FA);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+h1{
+    color:#0D47A1;
+    margin-bottom:10px;
+}
+
+#instruksi{
+    font-size:28px;
+    font-weight:bold;
+    color:#1565C0;
+    margin-bottom:20px;
+    text-align:center;
+}
+
+#bola{
+    width:120px;
+    height:120px;
+    background:#FF5252;
+    border-radius:50%;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+    transition:transform 4s linear;
+}
+
+#progress{
+    margin-top:25px;
+    font-size:22px;
+    color:#333;
+}
+
+#selesai{
+    position:fixed;
+    right:30px;
+    bottom:30px;
+    padding:15px 25px;
+    font-size:24px;
+    background:#4CAF50;
+    color:white;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+    display:none;
+}
+
+#selesai:hover{
+    background:#388E3C;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌬️ Latihan Pernapasan CERIA</h1>
+
+<div id="instruksi">Tarik Napas...</div>
+
+<div id="bola"></div>
+
+<div id="progress">Putaran: 0 / 5</div>
+
+<button id="selesai"
+onclick="window.location.href='../level1-selesai/index.html'">
+✅ Level 1 Selesai
+</button>
+
+<script>
+
+const bola = document.getElementById("bola");
+const instruksi = document.getElementById("instruksi");
+const progress = document.getElementById("progress");
+const tombol = document.getElementById("selesai");
+
+let putaran = 0;
+const totalPutaran = 5;
+
+function tarikNapas(){
+
+    instruksi.innerHTML = "🫁 Tarik Napas";
+    bola.style.transform = "scale(2)";
+
+    setTimeout(() => {
+        hembuskanNapas();
+    },4000);
+}
+
+function hembuskanNapas(){
+
+    instruksi.innerHTML = "💨 Hembuskan Napas";
+    bola.style.transform = "scale(1)";
+
+    setTimeout(() => {
+
+        putaran++;
+        progress.innerHTML = "Putaran: " + putaran + " / " + totalPutaran;
+
+        if(putaran >= totalPutaran){
+            instruksi.innerHTML = "🌟 Hebat! Latihan Selesai";
+            tombol.style.display = "block";
+        }else{
+            tarikNapas();
+        }
+
+    },4000);
+}
+
+tarikNapas();
+
+</script>
+
+</body>
+</html>
